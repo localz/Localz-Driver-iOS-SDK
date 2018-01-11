@@ -276,14 +276,12 @@ extern NSString * _Nonnull const LocalzDriverUnassignedOrdersNotification;
  * This method should be implemented by the matching AppDelegate notification method.
  * For versions of iOS 10 and later
  */
-- (void) userNotificationCenter:(UNUserNotificationCenter * _Nonnull)center willPresentNotification:(UNNotification * _Nullable)notification withCompletionHandler:(void (^_Nullable)(UNNotificationPresentationOptions))completionHandler;
+- (void) userNotificationCenter:(UNUserNotificationCenter * _Nonnull)center willPresentNotification:(UNNotification * _Nullable)notification withCompletionHandler:(void (^_Nullable)(UNNotificationPresentationOptions))completionHandler NS_AVAILABLE_IOS(10.0);
 
 /**
  * This method should be implemented by the matching AppDelegate notification method.
  * For versions of iOS 10 and later
  */
-- (void) userNotificationCenter:(UNUserNotificationCenter * _Nonnull)center didReceiveNotificationResponse:(UNNotificationResponse * _Nullable)response withCompletionHandler:(void (^_Nullable)(void))completionHandler;
-
-    
+- (void) userNotificationCenter:(UNUserNotificationCenter * _Nonnull)center didReceiveNotificationResponse:(UNNotificationResponse * _Nullable)response withCompletionHandler:(void (^_Nullable)(void))completionHandler NS_AVAILABLE_IOS(10.0);
     
 @end
