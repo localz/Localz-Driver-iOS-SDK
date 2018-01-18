@@ -34,21 +34,20 @@ extern NSString * _Nonnull const LocalzDriverUnassignedOrdersNotification;
 
 @protocol LocalzDriverSDKDelegate <NSObject>
 - (void)localzDriverSDKInit:(NSError * _Nullable)error;
-
 @optional
 /**
  * Order management delegates
  */
-- (void)localzDriverSDKCheckedInOrder:(LocalzDriverOrder *  _Nonnull)order data:(NSDictionary * _Nullable)data;
-- (void)localzDriverSDKAcknowledgedOrderNumber:(NSString * _Nonnull)orderNumber data:(NSDictionary * _Nullable)data;
-- (void)localzDriverSDKCompletedOrderNumber:(NSString * _Nonnull)orderNumber data:(NSDictionary * _Nullable)data;
-- (void)localzDriverSDKHelpRequestWithData:(NSDictionary * _Nullable)data;
-- (void)localzDriverSDKReminderWithNumberOfUnassignedOrderNumbers:(NSArray * _Nonnull)orders;
+- (void) localzDriverSDKTrackOrder:(LocalzDriverOrder *  _Nonnull)order data:(NSDictionary * _Nullable)data;
+- (void) localzDriverSDKAcknowledgedOrderNumber:(NSString * _Nonnull)orderNumber data:(NSDictionary * _Nullable)data;
+- (void) localzDriverSDKCompletedOrderNumber:(NSString * _Nonnull)orderNumber data:(NSDictionary * _Nullable)data;
+- (void) localzDriverSDKHelpRequestWithData:(NSDictionary * _Nullable)data;
+- (void) localzDriverSDKReminderWithNumberOfUnassignedOrderNumbers:(NSArray * _Nonnull)orders;
 
 /**
  * Only applicable for if Spotz is enabled
  */
-- (void)localzDriverSDKSiteInit:(NSError * _Nullable)error;
+- (void) localzDriverSDKSiteInit:(NSError * _Nullable)error;
 //- (void)localzDriverSDKEnteredSite:(SpotzSiteDetails * _Nonnull)site;
 
 @end
@@ -79,7 +78,7 @@ extern NSString * _Nonnull const LocalzDriverUnassignedOrdersNotification;
  * @param delegate LocalzDriverSDKDelegate instance to handle the SDK events (optional)
  * @param options Additional configuration options. Please see Localz's documentation for more details. (optional)
  */
-+ (void)initWithAppId:(NSString * _Nonnull)appId appKey:(NSString * _Nonnull)appKey cncKey:(NSString * _Nullable)cncKey delegate:(id<LocalzDriverSDKDelegate> _Nullable)delegate options:(NSDictionary * _Nullable)options;
++ (void) initWithAppId:(NSString * _Nonnull)appId appKey:(NSString * _Nonnull)appKey cncKey:(NSString * _Nullable)cncKey delegate:(id<LocalzDriverSDKDelegate> _Nullable)delegate options:(NSDictionary * _Nullable)options;
 
 /**
  * Request location services permission
@@ -108,7 +107,7 @@ extern NSString * _Nonnull const LocalzDriverUnassignedOrdersNotification;
  * @param options Additional login options (optional)
  * @param completion Completion block returns LocalzAttendant object if successful or error if any
  */
-- (void) loginWithUsername:(NSString * _Nonnull)username password:(NSString * _Nonnull)password branchId:(NSString * _Nullable)branchId force:(BOOL)force  options:(NSDictionary * _Nullable) options completion:(void (^_Nullable)(NSError * _Nullable error, LocalzDriverAttendant * _Nullable user))completion;
+- (void) loginWithUsername:(NSString * _Nonnull)username password:(NSString * _Nonnull)password branchId:(NSString * _Nullable)branchId force:(BOOL)force options:(NSDictionary * _Nullable)options completion:(void (^_Nullable)(NSError * _Nullable error, LocalzDriverAttendant * _Nullable user))completion;
 
 /**
  * Is user currently logged in?
@@ -185,12 +184,16 @@ extern NSString * _Nonnull const LocalzDriverUnassignedOrdersNotification;
  */
 - (void) retrieveOrdersFromDate:(NSDate * _Nullable)fromDate toDate:(NSDate * _Nullable)toDate completion:(void (^ _Nullable)(NSError * _Nullable, NSArray * _Nullable))completion;
 
+
+- (void) assignOrder:(NSString * _Nonnull)orderNumber completion:(void(^ _Nullable)(NSError * _Nullable error))completion;
+
 /**
  * Sends ETA notification to the customer. This will also take background tracking out of resume. 
  * @param orderNumber The order number
+ * @param buffer Number of minutes as buffer to be added to ETA for next order
  * @param completion Returns NSError if there were errors
  */
-- (void) sendEtaNotification:(NSString * _Nonnull)orderNumber completion:(void (^_Nullable)(NSError * _Nullable error))completion;
+- (void) sendEtaNotification:(NSString * _Nonnull)orderNumber etaBufferInMinutes:(int)buffer completion:(void (^_Nullable)(NSError * _Nullable error))completion;
 
 /**
  * Retrieves the ETA to the location specified in the order and the current location of the device

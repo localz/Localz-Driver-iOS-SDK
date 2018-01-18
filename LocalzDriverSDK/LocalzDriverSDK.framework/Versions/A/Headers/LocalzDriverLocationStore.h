@@ -1,9 +1,9 @@
 //
 //  LocalzDriverLocationStore.h
-//  Pods
+//  LocalzDriverSDK
 //
 //  Created by Melvin Artemas on 24/09/2015.
-//
+//  Copyright © 2015 Localz Pty Ltd. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>

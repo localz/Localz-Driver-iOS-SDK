@@ -1,6 +1,6 @@
 //
 //  LocalzDriverAttendant.h
-//  LocalzDriverAttendant
+//  LocalzDriverSDK
 //
 //  Created by Daniel Sykes-Turner on 18/09/2015.
 //  Copyright © 2015 Localz Pty Ltd. All rights reserved.

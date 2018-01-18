@@ -28,6 +28,7 @@ extern NSString * const ORDER_STATUS_READY;
 @property (nonatomic, readonly, strong) NSString *orderNumber;
 @property (nonatomic, readonly, strong) NSDate *expectedDateFrom;
 @property (nonatomic, readonly, strong) NSDate *expectedDateTo;
+@property (nonatomic, readonly, strong) NSString *shopperId;
 @property (nonatomic, readonly, strong) NSString *selectedPickupId;
 @property (nonatomic, readonly, strong) NSNumber *totalItems;
 @property (nonatomic, readonly, strong) NSDictionary *specific;
