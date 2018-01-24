@@ -3,7 +3,7 @@ Pod::Spec.new do |s|
 	s.name	= 'LocalzDriverSDK'
 	s.summary = 'LocalzDriverSDK'
 
-	s.version = '0.6.3'
+	s.version = '0.6.4'
 	s.platform = :ios,'9.0'
 	s.ios.deployment_target = '9.0'
 

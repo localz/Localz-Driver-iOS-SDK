@@ -7,14 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "LocalzDriverLocationStorePickup.h"
-#import "LocalzDriverLocationStore.h"
 #import "LocalzDriverOrderItem.h"
 
 extern NSString * const ORDER_STATUS_PENDING;
 extern NSString * const ORDER_STATUS_PENDING_PACKED;
-extern NSString * const ORDER_STATUS_UNASSIGNED;
-extern NSString * const ORDER_STATUS_ASSIGNED;
+extern NSString * const ORDER_STATUS_UNACKNOWLEDGED;
+extern NSString * const ORDER_STATUS_ACKNOWLEDGED;
 extern NSString * const ORDER_STATUS_COMPLETE;
 extern NSString * const ORDER_STATUS_READY;
 
@@ -32,16 +30,15 @@ extern NSString * const ORDER_STATUS_READY;
 @property (nonatomic, readonly, strong) NSString *selectedPickupId;
 @property (nonatomic, readonly, strong) NSNumber *totalItems;
 @property (nonatomic, readonly, strong) NSDictionary *specific;
-@property (nonatomic, readonly, strong) LocalzDriverLocationStore *store;
+@property (nonatomic, readonly, strong) NSString *locationId;
+@property (nonatomic, readonly, strong) NSString *branchId;
 @property (nonatomic, readonly, strong) NSArray *orderItems;
 @property (nonatomic, readonly, strong) NSDate *checkinDate;
 @property (nonatomic, readonly, strong) NSString *checkinMethod;
 @property (nonatomic, readonly, strong) NSString *pickupLocation;
-@property (nonatomic, readonly, strong) NSDate *startTrackTime;
 @property (nonatomic, readonly, strong) NSString *status;
-@property (nonatomic, readonly, strong) NSDate *lastUpdate;
-
 @property (nonatomic, readonly) BOOL shouldGiveFeedback; // whether the user should provide feedback on the order after completion
+@property (nonatomic, readonly, strong) NSArray *proofOfDeliveryFlow;
 
 - (LocalzDriverOrder *)initWithData:(NSDictionary *)data;
 

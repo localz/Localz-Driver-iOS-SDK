@@ -180,25 +180,29 @@ extern NSString * _Nonnull const LocalzDriverUnassignedOrdersNotification;
  * However if you supply a fromDate or toDate but not both, an error will be returned.
  * @param fromDate The from UTC date filter
  * @param toDate The from UTC date filter
- * @param completion The to UTC date filter
+ * @param completion The completion block which will return error if any
  */
 - (void) retrieveOrdersFromDate:(NSDate * _Nullable)fromDate toDate:(NSDate * _Nullable)toDate completion:(void (^ _Nullable)(NSError * _Nullable, NSArray * _Nullable))completion;
 
-
-- (void) assignOrder:(NSString * _Nonnull)orderNumber completion:(void(^ _Nullable)(NSError * _Nullable error))completion;
+/**
+ * Sets the status of the order to acknowledged
+ * @param orderNumber The order number
+ * @param completion The completion block which will return error if any
+ */
+- (void) acknowledgeOrder:(NSString * _Nonnull)orderNumber completion:(void(^ _Nullable)(NSError * _Nullable error))completion;
 
 /**
- * Sends ETA notification to the customer. This will also take background tracking out of resume. 
+ * Sends ETA notification to the customer. This will also take background tracking out of resume.
  * @param orderNumber The order number
  * @param buffer Number of minutes as buffer to be added to ETA for next order
- * @param completion Returns NSError if there were errors
+ * @param completion The completion block which returns the ETA or error if any
  */
 - (void) sendEtaNotification:(NSString * _Nonnull)orderNumber etaBufferInMinutes:(int)buffer completion:(void (^_Nullable)(NSError * _Nullable error))completion;
 
 /**
  * Retrieves the ETA to the location specified in the order and the current location of the device
  * @param orderNumber The order number to get ETA for
- * @param completion The completion block which returns the ETA or error if any
+ * @param completion The completion block which returns the error if any
  */
 - (void) getEtaForOrderNumber:(NSString * _Nonnull)orderNumber completion:(void (^_Nullable)(NSError * _Nullable error, LocalzEta * _Nullable))completion;
 
