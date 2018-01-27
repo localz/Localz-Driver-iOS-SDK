@@ -1,0 +1,1 @@
+../../../../SpotzRTSDK/SpotzSDK/SpotzSDK.framework/Versions/A/Headers/SpotzSDK.h

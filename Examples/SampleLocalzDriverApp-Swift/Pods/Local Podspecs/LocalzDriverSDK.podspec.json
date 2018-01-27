@@ -1,0 +1,42 @@
+{
+  "name": "LocalzDriverSDK",
+  "platforms": {
+    "ios": "8.0"
+  },
+  "license": {
+    "type": "Commercial",
+    "text": "\t\t\tCopyright 2018 Localz Pty Ltd.\n"
+  },
+  "version": "0.6.4",
+  "summary": "iOS library for Localz Driver service",
+  "homepage": "http://localz.com",
+  "authors": {
+    "Localz Pty Ltd": "info@localz.com"
+  },
+  "source": {
+    "git": "https://github.com/localz/localz-driver-sdk-ios"
+  },
+  "source_files": [
+    "LocalzDriverSDK",
+    "LocalzDriverSDK/**/*.{h,m}"
+  ],
+  "public_header_files": "LocalzDriverSDK/**/*.h",
+  "prefix_header_file": "LocalzDriverSDK/SupportingFiles/LocalzDriverSDK-Prefix.pch",
+  "requires_arc": true,
+  "frameworks": [
+    "CoreLocation",
+    "SystemConfiguration",
+    "Foundation"
+  ],
+  "dependencies": {
+    "YapDatabase": [
+
+    ],
+    "SpotzRTSDK": [
+
+    ],
+    "SpotzPushSDK": [
+
+    ]
+  }
+}

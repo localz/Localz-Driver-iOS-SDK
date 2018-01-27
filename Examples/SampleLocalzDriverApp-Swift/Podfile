@@ -1,0 +1,10 @@
+platform :ios,'9.0'
+
+source 'https://github.com/localz/Spotz-iOS-Specs.git'
+source 'https://github.com/CocoaPods/Specs.git'
+
+project 'SampleLocalzDriverApp-Swift'
+target 'SampleLocalzDriverApp-Swift' do
+    pod 'LocalzDriverSDK'
+end
+
