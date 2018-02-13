@@ -105,7 +105,7 @@ extern NSString * _Nonnull const LocalzDriverUnassignedOrdersNotification;
  * @param branchId The main site/branch where this user's orders or jobs are linked (optional)
  * @param force Force logout the other user's session if exists. If user has logged in elsewhere and force is false, an error will be returned in the completion block
  * @param options Additional login options (optional)
- * @param completion Completion block returns LocalzAttendant object if successful or error if any
+ * @param completion Completion block returns LocalzDriverAttendant object if successful or error if any
  */
 - (void) loginWithUsername:(NSString * _Nonnull)username password:(NSString * _Nonnull)password branchId:(NSString * _Nullable)branchId force:(BOOL)force options:(NSDictionary * _Nullable)options completion:(void (^_Nullable)(NSError * _Nullable error, LocalzDriverAttendant * _Nullable user))completion;
 
