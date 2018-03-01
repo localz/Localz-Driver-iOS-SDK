@@ -3,9 +3,9 @@ Pod::Spec.new do |s|
 	s.name	= 'LocalzDriverSDK'
 	s.summary = 'LocalzDriverSDK'
 
-	s.version = '0.6.8'
-	s.platform = :ios,'9.0'
-	s.ios.deployment_target = '9.0'
+	s.version = '0.6.9'
+	s.platform = :ios,'8.0'
+	s.ios.deployment_target = '8.0'
 
 	s.homepage = 'http://www.localz.com'
 	s.license = {

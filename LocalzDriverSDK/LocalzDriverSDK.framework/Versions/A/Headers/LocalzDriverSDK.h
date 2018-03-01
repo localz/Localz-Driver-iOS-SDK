@@ -177,7 +177,7 @@ extern NSString * _Nonnull const LocalzDriverUnassignedOrdersNotification;
 /**
  * Retrieves orders that are assigned to the logged in user within a certain date range as specified in startDate and fromDate
  * If you set BOTH fromDate and toDate to nil, it will retrieve all orders dated today.
- * However if you supply a fromDate or toDate but not both, an error will be returned.
+ * However if you supply a fromDate or toDate but NOT both, an error will be returned.
  * @param fromDate The from UTC date filter
  * @param toDate The from UTC date filter
  * @param completion The completion block which will return error if any
