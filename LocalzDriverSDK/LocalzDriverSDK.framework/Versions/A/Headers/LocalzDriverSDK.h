@@ -31,6 +31,7 @@ extern NSString * _Nonnull const LocalzDriverAcknowledgedOrderNotification;
 extern NSString * _Nonnull const LocalzDriverCompletedOrderNotification;
 extern NSString * _Nonnull const LocalzDriverHelpRequestNotification;
 extern NSString * _Nonnull const LocalzDriverUnassignedOrdersNotification;
+extern NSString * _Nonnull const LocalzDriverForceLogoutNotification;
 
 @protocol LocalzDriverSDKDelegate <NSObject>
 - (void)localzDriverSDKInit:(NSError * _Nullable)error;
@@ -43,6 +44,7 @@ extern NSString * _Nonnull const LocalzDriverUnassignedOrdersNotification;
 - (void) localzDriverSDKCompletedOrderNumber:(NSString * _Nonnull)orderNumber data:(NSDictionary * _Nullable)data;
 - (void) localzDriverSDKHelpRequestWithData:(NSDictionary * _Nullable)data;
 - (void) localzDriverSDKReminderWithNumberOfUnassignedOrderNumbers:(NSArray * _Nonnull)orders;
+- (void) localzDriverSDKForceLogout:(NSDictionary * _Nullable)data;
 
 /**
  * Only applicable for if Spotz is enabled
