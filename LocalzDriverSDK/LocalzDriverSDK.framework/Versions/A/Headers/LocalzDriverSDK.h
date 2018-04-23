@@ -26,12 +26,13 @@ extern NSString * _Nonnull const kLocalzDebugEnable;
 
 
 #pragma mark Notification Events
-extern NSString * _Nonnull const LocalzDriverCheckinOrderNotification;
+extern NSString * _Nonnull const LocalzDriverTrackOrderNotification;
 extern NSString * _Nonnull const LocalzDriverAcknowledgedOrderNotification;
 extern NSString * _Nonnull const LocalzDriverCompletedOrderNotification;
 extern NSString * _Nonnull const LocalzDriverHelpRequestNotification;
-extern NSString * _Nonnull const LocalzDriverUnassignedOrdersNotification;
+extern NSString * _Nonnull const LocalzDriverReminderUnassignedOrdersNotification;
 extern NSString * _Nonnull const LocalzDriverForceLogoutNotification;
+extern NSString * _Nonnull const LocalzDriverUnexpectedLogoutNotification;
 
 @protocol LocalzDriverSDKDelegate <NSObject>
 - (void)localzDriverSDKInit:(NSError * _Nullable)error;
@@ -45,6 +46,7 @@ extern NSString * _Nonnull const LocalzDriverForceLogoutNotification;
 - (void) localzDriverSDKHelpRequestWithData:(NSDictionary * _Nullable)data;
 - (void) localzDriverSDKReminderWithNumberOfUnassignedOrderNumbers:(NSArray * _Nonnull)orders;
 - (void) localzDriverSDKForceLogout:(NSDictionary * _Nullable)data;
+- (void) localzDriverSDKUnexpectedLogout;
 
 /**
  * Only applicable for if Spotz is enabled
