@@ -6,7 +6,7 @@
 //  Copyright © 2018 Localz Pty Ltd. All rights reserved.
 //
 
-@import CoreLocation;
+#import <CoreLocation/CoreLocation.h>
 #import <Foundation/Foundation.h>
 
 @interface LocalzEta : NSObject

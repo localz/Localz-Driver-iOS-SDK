@@ -6,7 +6,7 @@
 //  Copyright © 2017 Localz Pty Ltd. All rights reserved.
 //
 
-@import CoreLocation;
+#import <CoreLocation/CoreLocation.h>
 
 #import <Foundation/Foundation.h>
 #import <SpotzSDK/SpotzSDK.h>
@@ -26,11 +26,13 @@ extern NSString * _Nonnull const kLocalzDebugEnable;
 
 
 #pragma mark Notification Events
-extern NSString * _Nonnull const LocalzDriverCheckinOrderNotification;
+extern NSString * _Nonnull const LocalzDriverTrackOrderNotification;
 extern NSString * _Nonnull const LocalzDriverAcknowledgedOrderNotification;
 extern NSString * _Nonnull const LocalzDriverCompletedOrderNotification;
 extern NSString * _Nonnull const LocalzDriverHelpRequestNotification;
-extern NSString * _Nonnull const LocalzDriverUnassignedOrdersNotification;
+extern NSString * _Nonnull const LocalzDriverReminderUnassignedOrdersNotification;
+extern NSString * _Nonnull const LocalzDriverForceLogoutNotification;
+extern NSString * _Nonnull const LocalzDriverUnexpectedLogoutNotification;
 
 @protocol LocalzDriverSDKDelegate <NSObject>
 - (void)localzDriverSDKInit:(NSError * _Nullable)error;
@@ -43,6 +45,8 @@ extern NSString * _Nonnull const LocalzDriverUnassignedOrdersNotification;
 - (void) localzDriverSDKCompletedOrderNumber:(NSString * _Nonnull)orderNumber data:(NSDictionary * _Nullable)data;
 - (void) localzDriverSDKHelpRequestWithData:(NSDictionary * _Nullable)data;
 - (void) localzDriverSDKReminderWithNumberOfUnassignedOrderNumbers:(NSArray * _Nonnull)orders;
+- (void) localzDriverSDKForceLogout:(NSDictionary * _Nullable)data;
+- (void) localzDriverSDKUnexpectedLogout;
 
 /**
  * Only applicable for if Spotz is enabled
@@ -105,7 +109,7 @@ extern NSString * _Nonnull const LocalzDriverUnassignedOrdersNotification;
  * @param branchId The main site/branch where this user's orders or jobs are linked (optional)
  * @param force Force logout the other user's session if exists. If user has logged in elsewhere and force is false, an error will be returned in the completion block
  * @param options Additional login options (optional)
- * @param completion Completion block returns LocalzAttendant object if successful or error if any
+ * @param completion Completion block returns LocalzDriverAttendant object if successful or error if any
  */
 - (void) loginWithUsername:(NSString * _Nonnull)username password:(NSString * _Nonnull)password branchId:(NSString * _Nullable)branchId force:(BOOL)force options:(NSDictionary * _Nullable)options completion:(void (^_Nullable)(NSError * _Nullable error, LocalzDriverAttendant * _Nullable user))completion;
 
@@ -177,7 +181,7 @@ extern NSString * _Nonnull const LocalzDriverUnassignedOrdersNotification;
 /**
  * Retrieves orders that are assigned to the logged in user within a certain date range as specified in startDate and fromDate
  * If you set BOTH fromDate and toDate to nil, it will retrieve all orders dated today.
- * However if you supply a fromDate or toDate but not both, an error will be returned.
+ * However if you supply a fromDate or toDate but NOT both, an error will be returned.
  * @param fromDate The from UTC date filter
  * @param toDate The from UTC date filter
  * @param completion The completion block which will return error if any
@@ -193,8 +197,9 @@ extern NSString * _Nonnull const LocalzDriverUnassignedOrdersNotification;
 
 /**
  * Sends ETA notification to the customer. This will also take background tracking out of resume.
+ *  A warning will be issued if a buffer of over 24 hours is passed in.
  * @param orderNumber The order number
- * @param buffer Number of minutes as buffer to be added to ETA for next order
+ * @param buffer Number of minutes (int) as buffer to be added to ETA for next order
  * @param completion The completion block which returns the ETA or error if any
  */
 - (void) sendEtaNotification:(NSString * _Nonnull)orderNumber etaBufferInMinutes:(int)buffer completion:(void (^_Nullable)(NSError * _Nullable error))completion;

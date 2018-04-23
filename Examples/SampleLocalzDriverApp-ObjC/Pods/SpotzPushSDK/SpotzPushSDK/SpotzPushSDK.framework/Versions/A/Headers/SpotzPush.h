@@ -5,8 +5,8 @@
 //  Created by Melvin Artemas on 29/03/2015.
 //  Copyright (c) 2015 Localz Pty Ltd. All rights reserved.
 //
-@import UIKit;
-@import CoreLocation;
+#import <UIKit/UIKit.h>
+#import <CoreLocation/CoreLocation.h>
 #import <Foundation/Foundation.h>
 #import <UserNotifications/UserNotifications.h>
 
@@ -80,7 +80,7 @@
  *  @param categories A set of UNNotificationCategory objects that define the groups of actions a notification may include.
  *  @param config config for advance settings/debugging
  */
-+ (void) initWithAppId:(NSString * _Nonnull)appId appKey:(NSString * _Nonnull)appKey start:(BOOL)start authorizationOptions:(UNAuthorizationOptions)options categories:(NSSet * _Nullable)categories config:(NSDictionary * _Nonnull)config;
++ (void) initWithAppId:(NSString * _Nonnull)appId appKey:(NSString * _Nonnull)appKey start:(BOOL)start authorizationOptions:(UNAuthorizationOptions)options categories:(NSSet * _Nullable)categories config:(NSDictionary * _Nonnull)config __IOS_AVAILABLE(10.0);
 
 
 /**

@@ -20,7 +20,6 @@ extern NSString * const ORDER_STATUS_READY;
 @property (nonatomic, readonly, strong) NSString *deliveryName;
 @property (nonatomic, readonly, strong) NSString *deliveryEmail;
 @property (nonatomic, readonly, strong) NSString *deliveryPhone;
-@property (nonatomic, readonly, strong) NSString *deliveryAddress;
 @property (nonatomic, readonly, strong) NSString *orderAmount;
 @property (nonatomic, readonly, strong) NSDate *orderDate;
 @property (nonatomic, readonly, strong) NSString *orderNumber;
