@@ -6,7 +6,7 @@
 //  Copyright © 2015 Localz Pty Ltd. All rights reserved.
 //
 // Notification of network status
-extern NSString * const SPOTZ_CNC_NETWORK_NOTIFICATION;
+extern NSString * const SpotzCNCNetworkNotification;
 extern int const SPOTZ_CNC_IGNORE_ALERT_NOTIFICATION_PERIOD;
 typedef enum {
     EPushInitError = 510,
