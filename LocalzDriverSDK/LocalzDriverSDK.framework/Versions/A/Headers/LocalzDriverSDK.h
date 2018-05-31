@@ -29,6 +29,7 @@ extern NSString * _Nonnull const kLocalzDebugEnable;
 extern NSString * _Nonnull const LocalzDriverTrackOrderNotification;
 extern NSString * _Nonnull const LocalzDriverAcknowledgedOrderNotification;
 extern NSString * _Nonnull const LocalzDriverCompletedOrderNotification;
+extern NSString * _Nonnull const LocalzDriverResetOrderNotification;
 extern NSString * _Nonnull const LocalzDriverHelpRequestNotification;
 extern NSString * _Nonnull const LocalzDriverReminderUnassignedOrdersNotification;
 extern NSString * _Nonnull const LocalzDriverForceLogoutNotification;
@@ -43,6 +44,7 @@ extern NSString * _Nonnull const LocalzDriverUnexpectedLogoutNotification;
 - (void) localzDriverSDKTrackOrder:(LocalzDriverOrder *  _Nonnull)order data:(NSDictionary * _Nullable)data;
 - (void) localzDriverSDKAcknowledgedOrderNumber:(NSString * _Nonnull)orderNumber data:(NSDictionary * _Nullable)data;
 - (void) localzDriverSDKCompletedOrderNumber:(NSString * _Nonnull)orderNumber data:(NSDictionary * _Nullable)data;
+- (void) localzDriverSDKResetOrder:(NSString * _Nonnull)orderNumber data:(NSDictionary * _Nullable)data;
 - (void) localzDriverSDKHelpRequestWithData:(NSDictionary * _Nullable)data;
 - (void) localzDriverSDKReminderWithNumberOfUnassignedOrderNumbers:(NSArray * _Nonnull)orders;
 - (void) localzDriverSDKForceLogout:(NSDictionary * _Nullable)data;
@@ -106,12 +108,11 @@ extern NSString * _Nonnull const LocalzDriverUnexpectedLogoutNotification;
  * Login user with username / password. This is one of the login method which requires the username and password be setup through the Localz web console. See other login implementations for more details.
  * @param username Username
  * @param password The password
- * @param branchId The main site/branch where this user's orders or jobs are linked (optional)
  * @param force Force logout the other user's session if exists. If user has logged in elsewhere and force is false, an error will be returned in the completion block
- * @param options Additional login options (optional)
  * @param completion Completion block returns LocalzDriverAttendant object if successful or error if any
  */
-- (void) loginWithUsername:(NSString * _Nonnull)username password:(NSString * _Nonnull)password branchId:(NSString * _Nullable)branchId force:(BOOL)force options:(NSDictionary * _Nullable)options completion:(void (^_Nullable)(NSError * _Nullable error, LocalzDriverAttendant * _Nullable user))completion;
+- (void) loginWithUsername:(NSString * _Nonnull)username password:(NSString * _Nonnull)password force:(BOOL)force completion:(void (^_Nullable)(NSError * _Nullable error, LocalzDriverAttendant * _Nullable user))completion;
+- (void) loginWithUsername:(NSString * _Nonnull)username password:(NSString * _Nonnull)password branchId:(NSString * _Nullable)branchId force:(BOOL)force options:(NSDictionary * _Nullable)options completion:(void (^_Nullable)(NSError * _Nullable error, LocalzDriverAttendant * _Nullable user))completion __deprecated_msg("'branchId' and 'options' are no longer in use. Please use loginWithUsername:password:force:completion instead");
 
 /**
  * Is user currently logged in?
