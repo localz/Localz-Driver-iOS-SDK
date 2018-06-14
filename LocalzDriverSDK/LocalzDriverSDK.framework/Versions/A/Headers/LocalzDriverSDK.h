@@ -190,6 +190,13 @@ extern NSString * _Nonnull const LocalzDriverUnexpectedLogoutNotification;
 - (void) retrieveOrdersFromDate:(NSDate * _Nullable)fromDate toDate:(NSDate * _Nullable)toDate completion:(void (^ _Nullable)(NSError * _Nullable, NSArray * _Nullable))completion;
 
 /**
+ * Retrieves order details for the given order number
+ * @param orderNumber order number for which the details are required
+ * @param completion The completion block which will return error if any
+ */
+- (void) retrieveOrderDetailsForOrderNumber:(NSString * _Nonnull)orderNumber completion:(void (^ _Nullable)(NSError * _Nullable error, LocalzDriverOrder * _Nullable order))completion;
+
+/**
  * Sets the status of the order to acknowledged
  * @param orderNumber The order number
  * @param completion The completion block which will return error if any
