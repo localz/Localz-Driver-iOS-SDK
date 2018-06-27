@@ -207,10 +207,11 @@ extern NSString * _Nonnull const LocalzDriverUnexpectedLogoutNotification;
  * Sends ETA notification to the customer. This will also take background tracking out of resume.
  *  A warning will be issued if a buffer of over 24 hours is passed in.
  * @param orderNumber The order number
+ * @param completeActiveOrders The option (BOOL) to move orders with an active status to completed for the current driver
  * @param buffer Number of minutes (int) as buffer to be added to ETA for next order
  * @param completion The completion block which returns the ETA or error if any
  */
-- (void) sendEtaNotification:(NSString * _Nonnull)orderNumber etaBufferInMinutes:(int)buffer completion:(void (^_Nullable)(NSError * _Nullable error))completion;
+- (void) sendEtaNotification:(NSString * _Nonnull)orderNumber completeActiveOrders:(BOOL)completeActiveOrders etaBufferInMinutes:(int)buffer completion:(void (^_Nullable)(NSError * _Nullable error))completion;
 
 /**
  * Retrieves the ETA to the location specified in the order and the current location of the device
