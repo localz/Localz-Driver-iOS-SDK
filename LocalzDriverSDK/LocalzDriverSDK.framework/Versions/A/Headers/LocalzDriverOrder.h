@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "LocalzDriverOrderItem.h"
+#import "LocalzDriverOrderAddress.h"
 
 extern NSString * const ORDER_STATUS_PENDING;
 extern NSString * const ORDER_STATUS_PENDING_PACKED;
@@ -38,6 +39,8 @@ extern NSString * const ORDER_STATUS_READY;
 @property (nonatomic, readonly, strong) NSString *status;
 @property (nonatomic, readonly) BOOL shouldGiveFeedback; // whether the user should provide feedback on the order after completion
 @property (nonatomic, readonly, strong) NSArray *proofOfDeliveryFlow;
+@property (nonatomic, readonly, strong) LocalzDriverOrderAddress *address;
+@property (nonatomic, readonly, strong) NSString *secondaryReference;
 
 - (LocalzDriverOrder *)initWithData:(NSDictionary *)data;
 
