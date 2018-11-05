@@ -12,9 +12,9 @@
 @interface LocalzDriverGeoJson : NSObject<NSCoding>
 
 @property (nonatomic, readonly, strong) NSArray *coordinates;
-@property (nonatomic, readonly, strong) NSString *type;
+@property (nonatomic, readonly, strong) NSString *type __deprecated_msg("'type' is no longer in use.");
 
-- (instancetype)initWithData:(NSDictionary *)data;
+- (instancetype) initWithData:(NSDictionary *)data;
 
 - (NSDictionary *) toJSON;
 @end

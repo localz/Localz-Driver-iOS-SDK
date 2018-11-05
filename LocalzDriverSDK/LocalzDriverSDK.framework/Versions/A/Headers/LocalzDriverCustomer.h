@@ -16,8 +16,8 @@
 @property (nonatomic, readonly, strong) NSString *email;
 @property (nonatomic, readwrite) BOOL isVerified;
 
-- (LocalzDriverCustomer *)initWithData:(NSDictionary *)data email:(NSString *)email;
+- (LocalzDriverCustomer *) initWithData:(NSDictionary *)data email:(NSString *)email;
 
-- (void)encodeWithCoder:(NSCoder *)encoder;
-- (id)initWithCoder:(NSCoder *)decoder;
+- (void) encodeWithCoder:(NSCoder *)encoder;
+- (id) initWithCoder:(NSCoder *)decoder;
 @end

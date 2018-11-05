@@ -16,6 +16,6 @@
 @property (nonatomic, readonly, strong) NSArray *proofOfDeliveryFlow;
 @property (nonatomic, readonly, strong) NSArray *attributesPresentation;
 
-- (LocalzDriverAttendant *)initWithData:(NSDictionary *)data;
+- (LocalzDriverAttendant *) initWithData:(NSDictionary *)data;
 
 @end

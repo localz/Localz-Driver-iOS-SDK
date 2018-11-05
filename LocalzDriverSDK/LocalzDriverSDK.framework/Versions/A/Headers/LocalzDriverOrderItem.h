@@ -11,9 +11,11 @@
 @interface LocalzDriverOrderItem : NSObject<NSCoding>
 @property (nonatomic, readonly, strong) NSString *itemId;
 @property (nonatomic, readonly, strong) NSString *status;
-@property (nonatomic, readonly, strong) NSString *amount;
+@property (nonatomic, readonly, strong) NSNumber *amount;
 @property (nonatomic, readonly, strong) NSDictionary *attributes;
 
 - (instancetype) initWithData:(id)data;
 - (void) status:(NSString *)status;
+- (NSDictionary *) toJSON;
+
 @end
