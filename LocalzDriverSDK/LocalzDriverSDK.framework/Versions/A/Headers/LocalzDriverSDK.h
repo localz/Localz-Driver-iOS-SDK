@@ -27,6 +27,7 @@ extern NSString * _Nonnull const kLocalzDebugEnable;
 
 #pragma mark Notification Events
 extern NSString * _Nonnull const LocalzDriverTrackOrderNotification;
+extern NSString * _Nonnull const LocalzDriverChangedOrderNotification;
 extern NSString * _Nonnull const LocalzDriverAcknowledgedOrderNotification;
 extern NSString * _Nonnull const LocalzDriverCompletedOrderNotification;
 extern NSString * _Nonnull const LocalzDriverResetOrderNotification;
@@ -42,6 +43,7 @@ extern NSString * _Nonnull const LocalzDriverUnexpectedLogoutNotification;
  * Order management delegates
  */
 - (void) localzDriverSDKTrackOrder:(LocalzDriverOrder *  _Nonnull)order data:(NSDictionary * _Nullable)data;
+- (void) localzDriverSDKChangedOrderNumber:(NSString * _Nonnull)orderNumber data:(NSDictionary * _Nullable)data;
 - (void) localzDriverSDKAcknowledgedOrderNumber:(NSString * _Nonnull)orderNumber data:(NSDictionary * _Nullable)data;
 - (void) localzDriverSDKCompletedOrderNumber:(NSString * _Nonnull)orderNumber data:(NSDictionary * _Nullable)data;
 - (void) localzDriverSDKResetOrder:(NSString * _Nonnull)orderNumber data:(NSDictionary * _Nullable)data;
