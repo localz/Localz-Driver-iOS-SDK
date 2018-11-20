@@ -227,9 +227,17 @@ extern NSString * _Nonnull const LocalzDriverUnexpectedLogoutNotification;
  * @param orderNumber The order number
  * @param signature The image of the captured signature (optiona)
  * @param notes Additional notes (optional)
+ * @param completion The completion block which returns the error if any
  */
 - (void) completeOrderNumber:(NSString * _Nonnull)orderNumber signature:(UIImage * _Nullable)signature notes:(NSString * _Nullable)notes completion:(void (^_Nullable)(NSError * _Nullable error))completion;
 
+/**
+ * Completes the given order with a failed status
+ * @param orderNumber The order number
+ * @param completion The completion block which returns the error if any
+ */
+- (void) failCompleteOrderNumber:(NSString * _Nonnull)orderNumber completion:(void (^_Nullable)(NSError * _Nullable error))completion;
+    
 #pragma mark Location management
 
 /**

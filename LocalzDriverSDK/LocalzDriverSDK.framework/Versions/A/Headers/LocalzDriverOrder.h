@@ -44,6 +44,8 @@ extern NSString * const ORDER_STATUS_READY;
 @property (nonatomic, readonly, strong) NSString *secondaryReference;
 @property (nonatomic, readonly, strong) NSArray *customerInstructions;
 @property (nonatomic, readonly, strong) NSArray *nominees;
+@property (nonatomic, readonly, strong) NSDate *staffAssigned;
+@property (nonatomic, readonly, strong) NSDate *staffLocNotified;
 @property (nonatomic, readonly, strong) LocalzDriverOrderAddress *address;
 @property (nonatomic, readonly, strong) LocalzDriverOrderLocation *location;
 
