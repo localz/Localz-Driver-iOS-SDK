@@ -13,10 +13,12 @@
 
 extern NSString * const ORDER_STATUS_PENDING;
 extern NSString * const ORDER_STATUS_PENDING_PACKED;
+extern NSString * const ORDER_STATUS_READY;
 extern NSString * const ORDER_STATUS_UNASSIGNED;
+extern NSString * const ORDER_STATUS_ETAQUEUED;
 extern NSString * const ORDER_STATUS_ASSIGNED;
 extern NSString * const ORDER_STATUS_COMPLETE;
-extern NSString * const ORDER_STATUS_READY;
+extern NSString * const ORDER_STATUS_FAILED_COMPLETE;
 
 @interface LocalzDriverOrder : NSObject<NSCoding>
 @property (nonatomic, readonly, strong) NSString *deliveryName;
