@@ -15,6 +15,7 @@
 @property (nonatomic, readonly, strong) NSString *lastName;
 @property (nonatomic, readonly, strong) NSArray *proofOfDeliveryFlow;
 @property (nonatomic, readonly, strong) NSArray *attributesPresentation;
+@property (nonatomic, readonly, strong) NSString *prefBranchId;
 
 - (LocalzDriverAttendant *) initWithData:(NSDictionary *)data;
 
