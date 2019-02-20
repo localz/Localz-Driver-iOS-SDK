@@ -10,6 +10,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UserNotifications/UserNotifications.h>
+#import <SpotzSDK/SpotzSDK.h>
 
 #import "LocalzDriverAttendant.h"
 #import "LocalzDriverOrder.h"
