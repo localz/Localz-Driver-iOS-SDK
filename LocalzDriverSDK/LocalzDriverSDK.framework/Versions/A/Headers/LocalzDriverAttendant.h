@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface LocalzDriverAttendant : NSObject<NSCoding>
+@property (nonatomic, readonly, strong) NSString *userId;
 @property (nonatomic, readonly, strong) NSString *attendantId;
 @property (nonatomic, readonly, strong) NSString *username;
 @property (nonatomic, readonly, strong) NSString *firstName;

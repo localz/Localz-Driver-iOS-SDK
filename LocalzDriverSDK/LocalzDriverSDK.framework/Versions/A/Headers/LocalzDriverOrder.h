@@ -10,6 +10,7 @@
 #import "LocalzDriverOrderItem.h"
 #import "LocalzDriverOrderAddress.h"
 #import "LocalzDriverOrderLocation.h"
+#import "LocalzDriverUser.h"
 
 extern NSString * const ORDER_STATUS_PENDING;
 extern NSString * const ORDER_STATUS_PENDING_PACKED;
@@ -50,7 +51,12 @@ extern NSString * const ORDER_STATUS_FAILED_COMPLETE;
 @property (nonatomic, readonly, strong) NSDate *staffLocNotified;
 @property (nonatomic, readonly, strong) LocalzDriverOrderAddress *address;
 @property (nonatomic, readonly, strong) LocalzDriverOrderLocation *location;
-
+@property (nonatomic, readonly, strong) NSString *grouping;
+@property (nonatomic, readonly, strong) NSNumber *sequence;
+@property (nonatomic, readonly, strong) NSString *orderType;
+@property (nonatomic, readonly) BOOL commsOptOut;
+@property (nonatomic, readonly, strong) NSArray *comments;
+@property (nonatomic, readonly, strong) LocalzDriverUser *user;
 
 - (LocalzDriverOrder *) initWithData:(NSDictionary *)data;
 
@@ -77,5 +83,7 @@ extern NSString * const ORDER_STATUS_FAILED_COMPLETE;
 - (void) completeOrderIfReady;
 
 - (NSDictionary *) toJSON;
+
+- (BOOL)isEqual:(id)object;
 
 @end

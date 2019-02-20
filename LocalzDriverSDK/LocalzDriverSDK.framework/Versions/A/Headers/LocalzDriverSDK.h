@@ -9,12 +9,13 @@
 #import <CoreLocation/CoreLocation.h>
 
 #import <Foundation/Foundation.h>
-#import <SpotzSDK/SpotzSDK.h>
 #import <UserNotifications/UserNotifications.h>
 
 #import "LocalzDriverAttendant.h"
 #import "LocalzDriverOrder.h"
 #import "LocalzEta.h"
+#import "LocalzDriverSite.h"
+#import "LocalzDriverReport.h"
 
 extern NSString * _Nonnull const kLocalzEnv;
 extern NSString * _Nonnull const kLocalzDriverL2LMode;
@@ -56,7 +57,6 @@ extern NSString * _Nonnull const LocalzDriverUnexpectedLogoutNotification;
  * Only applicable for if Spotz is enabled
  */
 - (void) localzDriverSDKSiteInit:(NSError * _Nullable)error;
-//- (void)localzDriverSDKEnteredSite:(SpotzSiteDetails * _Nonnull)site;
 
 @end
 
@@ -134,6 +134,44 @@ extern NSString * _Nonnull const LocalzDriverUnexpectedLogoutNotification;
  * @param completion Sets the error if logout was unsuccessful
  */
 - (void) logoutWithForce:(BOOL)force completion:(void (^_Nullable)(NSError * _Nullable error))completion;
+
+#pragma mark Site Management
+
+/**
+ * Creates an inspection or accident report.
+ * @param report The report to be created
+ *  @param siteId The id of the site to create report for
+ *  @param completion The completion block that will return the created report or error if any
+ */
+- (void) createReport:(LocalzDriverReport *_Nonnull)report forSiteId:(NSString *_Nonnull)siteId completion:(void (^_Nullable)(NSError * _Nullable, LocalzDriverReport * _Nullable))completion;
+
+/**
+ * Creates an inspection or accident report.
+ * @param completion The completion block will return error if any or reports if successful
+ */
+- (void) retrieveReportsWithCompletion:(void (^_Nullable)(NSError * _Nullable, NSArray <LocalzDriverReport *> * _Nullable))completion;
+
+/**
+ *  Assign the user to a site
+ *  @param siteId The id of the site to assign the current user to
+ *  @param completion The completion block will return error if any
+ */
+- (void) assignUserToSiteId:(NSString *_Nonnull)siteId completion:(void (^_Nullable)(NSError * _Nullable error))completion;
+
+/**
+ *  Unassign the user to a site
+ *  @param siteId The id of the site to unassign the current user from
+ *  @param completion The completion block will return error if any
+ */
+- (void) unassignUserFromSiteId:(NSString *_Nonnull)siteId completion:(void (^_Nullable)(NSError * _Nullable error))completion;
+
+
+/**
+ *  Get all sites associated with the current project
+ *  @param level Indication of level in the organisational structure
+ *  @param completion The completion block will return error if any
+ */
+- (void) retrieveSitesForLevel:(NSNumber *_Nullable)level completion:(void(^_Nullable)(NSError *_Nullable error, NSArray *_Nonnull sites))completion;
 
 #pragma mark Awesome core functions
 
@@ -225,19 +263,44 @@ extern NSString * _Nonnull const LocalzDriverUnexpectedLogoutNotification;
 /**
  * Completes the given order
  * @param orderNumber The order number
- * @param signature The image of the captured signature (optiona)
+ * @param signature The image of the captured signature (optional)
  * @param notes Additional notes (optional)
  * @param completion The completion block which returns the error if any
  */
-- (void) completeOrderNumber:(NSString * _Nonnull)orderNumber signature:(UIImage * _Nullable)signature notes:(NSString * _Nullable)notes completion:(void (^_Nullable)(NSError * _Nullable error))completion;
+- (void) completeOrderNumber:(NSString * _Nonnull)orderNumber signature:(UIImage * _Nullable)signature notes:(NSString * _Nullable)notes completion:(void (^_Nullable)(NSError * _Nullable error))completion  __deprecated_msg("Please use completeOrderNumber:signature:notes:proofOfDelivery:completion: instead");
+
+/**
+ * Completes the given order
+ * @param orderNumber The order number
+ * @param signature The image of the captured signature (optional)
+ * @param notes Additional notes (optional)
+ * @param proofOfDelivery The proof of delivery for the order
+ * @param completion The completion block which returns the error if any
+ */
+- (void) completeOrderNumber:(NSString * _Nonnull)orderNumber signature:(UIImage * _Nullable)signature notes:(NSString * _Nullable)notes proofOfDelivery:(NSDictionary *_Nullable)proofOfDelivery completion:(void (^_Nullable)(NSError * _Nullable error))completion;
 
 /**
  * Completes the given order with a failed status
  * @param orderNumber The order number
  * @param completion The completion block which returns the error if any
  */
-- (void) failCompleteOrderNumber:(NSString * _Nonnull)orderNumber completion:(void (^_Nullable)(NSError * _Nullable error))completion;
-    
+- (void) failCompleteOrderNumber:(NSString * _Nonnull)orderNumber completion:(void (^_Nullable)(NSError * _Nullable error))completion __deprecated_msg("Please use failCompleteOrder:proofOfDelivery:completion: instead");
+
+/**
+ * Completes the given order with a failed status
+ * @param orderNumber The order number
+ * @param proofOfDelivery The proof of delivery for the failed order
+ * @param completion The completion block which returns the error if any
+ */
+- (void) failCompleteOrderNumber:(NSString * _Nonnull)orderNumber proofOfDelivery:(NSDictionary *_Nullable)proofOfDelivery completion:(void (^_Nullable)(NSError * _Nullable error))completion;
+
+/**
+ *  Masks a delivery phone number for a particular order
+ *  @param orderNumber The order number for the order to with a delivery phone to mask
+ *  @param completion The completion block which returns the error or the confirmed masked phone if any
+ */
+- (void) maskDeliveryPhoneNumberForOrderNumber:(NSString * _Nonnull)orderNumber completion:(void(^)(NSError * _Nullable error, NSString * _Nullable maskingPhone))completion;
+
 #pragma mark Location management
 
 /**
@@ -314,5 +377,5 @@ extern NSString * _Nonnull const LocalzDriverUnexpectedLogoutNotification;
  * For versions of iOS 10 and later
  */
 - (void) userNotificationCenter:(UNUserNotificationCenter * _Nonnull)center didReceiveNotificationResponse:(UNNotificationResponse * _Nullable)response withCompletionHandler:(void (^_Nullable)(void))completionHandler NS_AVAILABLE_IOS(10.0);
-    
+
 @end
