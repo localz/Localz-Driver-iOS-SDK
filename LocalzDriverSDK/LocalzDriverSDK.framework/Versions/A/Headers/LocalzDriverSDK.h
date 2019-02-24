@@ -144,13 +144,20 @@ extern NSString * _Nonnull const LocalzDriverUnexpectedLogoutNotification;
  *  @param siteId The id of the site to create report for
  *  @param completion The completion block that will return the created report or error if any
  */
-- (void) createReport:(LocalzDriverReport *_Nonnull)report forSiteId:(NSString *_Nonnull)siteId completion:(void (^_Nullable)(NSError * _Nullable, LocalzDriverReport * _Nullable))completion;
+- (void) createReport:(LocalzDriverReport *_Nonnull)report forSiteId:(NSString *_Nonnull)siteId completion:(void (^_Nullable)(NSError * _Nullable error, LocalzDriverReport * _Nullable report))completion;
 
 /**
- * Creates an inspection or accident report.
+ * Retrieves all available reports.
  * @param completion The completion block will return error if any or reports if successful
  */
-- (void) retrieveReportsWithCompletion:(void (^_Nullable)(NSError * _Nullable, NSArray <LocalzDriverReport *> * _Nullable))completion;
+- (void) retrieveReportsWithCompletion:(void (^_Nullable)(NSError * _Nullable, NSArray <LocalzDriverReport *> * _Nullable reports))completion;
+
+/**
+ *  Download a report PDF.
+ *  @param identifier The id of the report to retrieve
+ *  @param completion The completion block will return a Data encoded PDF file of the report, or an error if any
+ */
+- (void) downloadReportPdfById:(NSString * _Nonnull)identifier completion:(void (^_Nullable)(NSError * _Nullable error, NSData * _Nullable report))completion;
 
 /**
  *  Assign the user to a site

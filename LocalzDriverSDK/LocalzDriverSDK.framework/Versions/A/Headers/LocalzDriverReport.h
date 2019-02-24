@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "LocalzDriverReportItem.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -17,9 +18,10 @@ typedef enum {
 
 @interface LocalzDriverReport : NSObject<NSCoding>
 
+@property (nonatomic, readonly, strong) NSString *identifier;
+@property (nonatomic, readonly, strong) NSString *reportId;
 @property (nonatomic, readonly, strong) NSString *firstName;
 @property (nonatomic, readonly, strong) NSString *lastName;
-@property (nonatomic, readonly, strong) NSString *reportId;
 @property (nonatomic, readonly) LocalzDriverReportType type;
 @property (nonatomic, readonly) NSArray *content;
 @property (nonatomic, readonly, strong) NSString *userId;
@@ -30,6 +32,8 @@ typedef enum {
 - (NSDictionary *) toJSON;
 
 - (NSString *)reportTypeString;
+
+- (BOOL)isEqual:(id)object;
 
 @end
 
