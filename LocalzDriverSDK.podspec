@@ -22,5 +22,5 @@ Pod::Spec.new do |s|
         s.frameworks = 'CoreLocation','SystemConfiguration','Foundation'
 	s.vendored_frameworks = 'LocalzDriverSDK/LocalzDriverSDK.framework'
 	s.dependency 'SpotzRTSDK', '~> 3.4.0'
-	s.dependency 'SpotzPushSDK'
+	s.dependency 'LocalzPushSDK'
 end
