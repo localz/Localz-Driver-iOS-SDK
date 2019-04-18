@@ -17,6 +17,7 @@
 #import "LocalzEta.h"
 #import "LocalzDriverSite.h"
 #import "LocalzDriverReport.h"
+#import "LocalzDriverConstants.h"
 
 extern NSString * _Nonnull const kLocalzEnv;
 extern NSString * _Nonnull const kLocalzDriverL2LMode;
@@ -53,15 +54,13 @@ extern NSString * _Nonnull const LocalzDriverUnexpectedLogoutNotification;
 - (void) localzDriverSDKReminderWithNumberOfUnassignedOrderNumbers:(NSArray * _Nonnull)orders;
 - (void) localzDriverSDKForceLogout:(NSDictionary * _Nullable)data;
 - (void) localzDriverSDKUnexpectedLogout;
+- (BOOL) localzDriverSDKShouldSendETANotificationsWithAccuracy:(double)accuracy;
 
 /**
  * Only applicable for if Spotz is enabled
  */
 - (void) localzDriverSDKSiteInit:(NSError * _Nullable)error;
 
-@end
-
-@protocol LocalzDriverSDKDataSource <NSObject>
 @end
 
 @interface LocalzDriverSDK : NSObject
@@ -260,6 +259,9 @@ extern NSString * _Nonnull const LocalzDriverUnexpectedLogoutNotification;
  * @param completion The completion block which returns the ETA or error if any
  */
 - (void) sendEtaNotification:(NSString * _Nonnull)orderNumber completeActiveOrders:(BOOL)completeActiveOrders etaBufferInMinutes:(int)buffer completion:(void (^_Nullable)(NSError * _Nullable error))completion;
+
+
+- (void) requestAccurateEtaNotification:(NSString * _Nonnull)orderNumber completeActiveOrders:(BOOL)completeActiveOrders etaBufferInMinutes:(int)buffer;
 
 /**
  * Retrieves the ETA to the location specified in the order and the current location of the device
