@@ -29,4 +29,9 @@
  */
 @property (nonatomic) int etaNotificationTimeout;
 
+/**
+ *  Enable local-to-local mode
+ */
+@property (nonatomic) BOOL isL2L;
+
 @end
