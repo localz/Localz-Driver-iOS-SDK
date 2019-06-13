@@ -18,6 +18,7 @@
 #import "LocalzDriverSite.h"
 #import "LocalzDriverReport.h"
 #import "LocalzDriverConstants.h"
+#import "LocalzProofOfDeliveryValue.h"
 
 extern NSString * _Nonnull const kLocalzEnv;
 extern NSString * _Nonnull const kLocalzDriverL2LMode;
@@ -287,7 +288,7 @@ extern NSString * _Nonnull const LocalzDriverUnexpectedLogoutNotification;
  * @param proofOfDelivery The proof of delivery for the order
  * @param completion The completion block which returns the error if any
  */
-- (void) completeOrderNumber:(NSString * _Nonnull)orderNumber signature:(UIImage * _Nullable)signature notes:(NSString * _Nullable)notes proofOfDelivery:(NSDictionary *_Nullable)proofOfDelivery completion:(void (^_Nullable)(NSError * _Nullable error))completion;
+- (void) completeOrderNumber:(NSString * _Nonnull)orderNumber signature:(UIImage * _Nullable)signature notes:(NSString * _Nullable)notes proofOfDelivery:(NSArray<LocalzProofOfDeliveryValue *> *_Nullable)proofOfDelivery completion:(void (^_Nullable)(NSError * _Nullable error))completion;
 
 /**
  * Completes the given order with a failed status
@@ -302,7 +303,7 @@ extern NSString * _Nonnull const LocalzDriverUnexpectedLogoutNotification;
  * @param proofOfDelivery The proof of delivery for the failed order
  * @param completion The completion block which returns the error if any
  */
-- (void) failCompleteOrderNumber:(NSString * _Nonnull)orderNumber proofOfDelivery:(NSDictionary *_Nullable)proofOfDelivery completion:(void (^_Nullable)(NSError * _Nullable error))completion;
+- (void) failCompleteOrderNumber:(NSString * _Nonnull)orderNumber proofOfDelivery:(NSArray<LocalzProofOfDeliveryValue *> *_Nullable)proofOfDelivery completion:(void (^_Nullable)(NSError * _Nullable error))completion;
 
 /**
  *  Masks a delivery phone number for a particular order
