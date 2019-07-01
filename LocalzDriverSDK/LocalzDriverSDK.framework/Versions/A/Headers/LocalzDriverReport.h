@@ -9,9 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "LocalzDriverReportItem.h"
 
-NS_ASSUME_NONNULL_BEGIN
-
 typedef enum {
+    DriverReportTypeUnknown = 0,
     DriverReportTypeAccident,
     DriverReportTypeInspection
 } LocalzDriverReportType;
@@ -35,6 +34,8 @@ typedef enum {
 
 - (BOOL)isEqual:(id)object;
 
-@end
++ (LocalzDriverReportType)reportTypeFromString:(NSString *)reportTypeStr;
 
-NS_ASSUME_NONNULL_END
++ (NSString *)stringFromReportType:(LocalzDriverReportType)reportType;
+
+@end

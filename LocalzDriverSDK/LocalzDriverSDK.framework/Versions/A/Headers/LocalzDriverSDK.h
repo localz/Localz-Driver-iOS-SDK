@@ -17,6 +17,7 @@
 #import "LocalzEta.h"
 #import "LocalzDriverSite.h"
 #import "LocalzDriverReport.h"
+#import "LocalzDriverReportFilter.h"
 #import "LocalzDriverConstants.h"
 #import "LocalzProofOfDeliveryValue.h"
 
@@ -153,6 +154,13 @@ extern NSString * _Nonnull const LocalzDriverUnexpectedLogoutNotification;
 - (void) retrieveReportsWithCompletion:(void (^_Nullable)(NSError * _Nullable, NSArray <LocalzDriverReport *> * _Nullable reports))completion;
 
 /**
+ * Retrieves all available reports based on an applied filter.
+ * @param filter The filter of values to which the reports should be filtered by.
+ * @param completion The completion block will return error if any or reports if successful
+ */
+- (void) retrieveReportsWithFilter:(LocalzDriverReportFilter * _Nullable)filter completion:(void (^_Nullable)(NSError * _Nullable, NSArray <LocalzDriverReport *> * _Nullable reports))completion;
+
+/**
  *  Download a report PDF.
  *  @param identifier The id of the report to retrieve
  *  @param completion The completion block will return a Data encoded PDF file of the report, or an error if any
@@ -261,7 +269,14 @@ extern NSString * _Nonnull const LocalzDriverUnexpectedLogoutNotification;
  */
 - (void) sendEtaNotification:(NSString * _Nonnull)orderNumber completeActiveOrders:(BOOL)completeActiveOrders etaBufferInMinutes:(int)buffer completion:(void (^_Nullable)(NSError * _Nullable error))completion;
 
-
+/**
+ * Makes a request for a more accurate ETA notification to be sent to the customer.
+ * This will queue an ETA notification and send it when a more accurate location is aquired or a timeout is reached. The delegate localzDriverSDKShouldSendETANotificationsWithAccuracy: can be used to customise this behaviour. When complete a notification will be delivered via LocalzDriverETARequestNotification with the result of this method.
+ *  A warning will be issued if a buffer of over 24 hours is passed in.
+ * @param orderNumber The order number
+ * @param completeActiveOrders The option (BOOL) to move orders with an active status to completed for the current driver
+ * @param buffer Number of minutes (int) as buffer to be added to ETA for next order
+ */
 - (void) requestAccurateEtaNotification:(NSString * _Nonnull)orderNumber completeActiveOrders:(BOOL)completeActiveOrders etaBufferInMinutes:(int)buffer;
 
 /**
@@ -310,7 +325,7 @@ extern NSString * _Nonnull const LocalzDriverUnexpectedLogoutNotification;
  *  @param orderNumber The order number for the order to with a delivery phone to mask
  *  @param completion The completion block which returns the error or the confirmed masked phone if any
  */
-- (void) maskDeliveryPhoneNumberForOrderNumber:(NSString * _Nonnull)orderNumber completion:(void(^)(NSError * _Nullable error, NSString * _Nullable maskingPhone))completion;
+- (void) maskDeliveryPhoneNumberForOrderNumber:(NSString * _Nonnull)orderNumber completion:(void(^_Nullable)(NSError * _Nullable error, NSString * _Nullable maskingPhone))completion;
 
 #pragma mark Location management
 
