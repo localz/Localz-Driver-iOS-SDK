@@ -188,6 +188,13 @@ extern NSString * _Nonnull const LocalzDriverUnexpectedLogoutNotification;
  *  @param completion The completion block will return error if any
  */
 - (void) retrieveSitesForLevel:(NSNumber *_Nullable)level completion:(void(^_Nullable)(NSError *_Nullable error, NSArray *_Nonnull sites))completion;
+    
+/**
+ *  Get all sites associated with the current project that the driver has access to
+ *  @param level Indication of level in the organisational structure
+ *  @param completion The completion block will return error if any
+ */
+- (void) retrieveMySitesForLevel:(NSNumber *_Nullable)level completion:(void(^_Nullable)(NSError *_Nullable error, NSArray *_Nonnull sites))completion;
 
 #pragma mark Awesome core functions
 
@@ -251,6 +258,18 @@ extern NSString * _Nonnull const LocalzDriverUnexpectedLogoutNotification;
  * @param completion The completion block which will return error if any
  */
 - (void) retrieveOrderDetailsForOrderNumber:(NSString * _Nonnull)orderNumber completion:(void (^ _Nullable)(NSError * _Nullable error, LocalzDriverOrder * _Nullable order))completion;
+
+
+/** Add a comment to the given order number.
+* @param orderNumber NSString order number for which the details are required.
+* @param comment NSString representing the comment to add.
+* @param commentDate NSDate representing the date for given comment.
+* @param completion Completion block returning an error if any.
+*/
+- (void) addCommentToOrderNumber:(nonnull NSString *)orderNumber
+                         comment:(nonnull NSString *)comment
+                     commentDate:(nullable NSDate *)commentDate
+                      completion:(nullable void(^)(NSError *_Nullable error))completion;
 
 /**
  * Sets the status of the order to acknowledged
