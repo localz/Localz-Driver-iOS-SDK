@@ -9,17 +9,11 @@
 #import <CoreLocation/CoreLocation.h>
 #import <Foundation/Foundation.h>
 
-@interface LocalzEta : NSObject
-@property (nonatomic, readonly, strong) NSString *trackId;
-@property (nonatomic, readonly, strong) NSDate *etaFrom;
-@property (nonatomic, readonly, strong) NSDate *etaTo;
-@property (nonatomic, readonly, strong) NSNumber *etaSeconds;
-@property (nonatomic, readonly, strong) NSNumber *etaMinutes;
-@property (nonatomic, readonly, strong) NSNumber *seconds __deprecated_msg("Please use 'etaSeconds' instead");
-@property (nonatomic, readonly, strong) NSNumber *minutes __deprecated_msg("Please use 'etaMinutes' instead");
-@property (nonatomic, readonly, strong) NSArray *destinations;
+@interface LocalzEtaPoint : NSObject
+@property (nonatomic, readonly) CGFloat latitude;
+@property (nonatomic, readonly) CGFloat longitude;
 
-- (instancetype) initWithData:(NSDictionary *)data;
+- (instancetype) initWithLatitude:(CGFloat)latitude longitude:(CGFloat)longitude;
 - (NSDictionary *) toDictionary;
 @end
 
@@ -34,6 +28,21 @@
 @property (nonatomic, readonly) BOOL isVisited __deprecated_msg("Please use 'visited' instead");
 @property (nonatomic, readonly) CLLocationCoordinate2D coordinates;
 @property (nonatomic, readonly, strong) CLLocation *location __deprecated_msg("Please use 'coordinates' instead");
+
+- (instancetype) initWithData:(NSDictionary *)data;
+- (NSDictionary *) toDictionary;
+@end
+
+@interface LocalzEta : NSObject
+@property (nonatomic, readonly, strong) NSString *trackId;
+@property (nonatomic, readonly, strong) NSDate *etaFrom;
+@property (nonatomic, readonly, strong) NSDate *etaTo;
+@property (nonatomic, readonly, strong) NSNumber *etaSeconds;
+@property (nonatomic, readonly, strong) NSNumber *etaMinutes;
+@property (nonatomic, readonly, strong) NSNumber *seconds __deprecated_msg("Please use 'etaSeconds' instead");
+@property (nonatomic, readonly, strong) NSNumber *minutes __deprecated_msg("Please use 'etaMinutes' instead");
+@property (nonatomic, readonly, strong) NSArray <LocalzDestEta *>*destinations;
+@property (nonatomic, readonly, strong) NSArray <LocalzEtaPoint *>*points;
 
 - (instancetype) initWithData:(NSDictionary *)data;
 - (NSDictionary *) toDictionary;

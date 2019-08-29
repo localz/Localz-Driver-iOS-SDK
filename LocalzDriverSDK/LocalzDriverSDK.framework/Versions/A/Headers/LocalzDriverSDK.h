@@ -303,7 +303,18 @@ extern NSString * _Nonnull const LocalzDriverUnexpectedLogoutNotification;
  * @param orderNumber The order number to get ETA for
  * @param completion The completion block which returns the error if any
  */
-- (void) getEtaForOrderNumber:(NSString * _Nonnull)orderNumber completion:(void (^_Nullable)(NSError * _Nullable error, LocalzEta * _Nullable))completion;
+- (void) getEtaForOrderNumber:(NSString * _Nonnull)orderNumber
+                   completion:(void (^_Nullable)(NSError * _Nullable error, LocalzEta * _Nullable))completion;
+
+/**
+ * Retrieves the ETA to the location specified in the order and the current location of the device
+ * @param orderNumber The order number to get ETA for
+ * @param points Flag indicating whether to return route points
+ * @param completion The completion block which returns the error if any
+ */
+- (void) getEtaForOrderNumber:(NSString * _Nonnull)orderNumber
+                       points:(BOOL)points
+                   completion:(void (^_Nullable)(NSError * _Nullable error, LocalzEta * _Nullable))completion;
 
 /**
  * Completes the given order
