@@ -20,6 +20,7 @@
 #import "LocalzDriverReportFilter.h"
 #import "LocalzDriverConstants.h"
 #import "LocalzProofOfDeliveryValue.h"
+#import "LocalzDriverEditProfile.h"
 
 extern NSString * _Nonnull const kLocalzEnv;
 extern NSString * _Nonnull const kLocalzDriverL2LMode;
@@ -356,6 +357,21 @@ extern NSString * _Nonnull const LocalzDriverUnexpectedLogoutNotification;
  *  @param completion The completion block which returns the error or the confirmed masked phone if any
  */
 - (void) maskDeliveryPhoneNumberForOrderNumber:(NSString * _Nonnull)orderNumber completion:(void(^_Nullable)(NSError * _Nullable error, NSString * _Nullable maskingPhone))completion;
+
+#pragma mark Technician Profile
+
+/**
+ * Get the driver's profile
+ * @param completion The completion block which returns the error or the driver's profile
+ */
+- (void) getDriverProfile:(void (^ _Nullable)(NSError * _Nullable, LocalzDriverAttendant * _Nullable))completion;
+
+/**
+ * Update the driver's user profile (only limited to contact information, avatar, first name, last name and preferred branch)
+ * @param newProfile The updated fields to send to the API
+ * @param completion The completion block which returns the error or the driver's updated profile
+ */
+- (void) updateDriverProfile:(LocalzDriverEditProfile * _Nonnull)newProfile completion:(void (^ _Nullable)(NSError * _Nullable, LocalzDriverAttendant * _Nullable))completion;
 
 #pragma mark Location management
 
