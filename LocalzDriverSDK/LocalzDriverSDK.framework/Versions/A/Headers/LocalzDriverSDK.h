@@ -41,6 +41,7 @@ extern NSString * _Nonnull const LocalzDriverHelpRequestNotification;
 extern NSString * _Nonnull const LocalzDriverReminderUnassignedOrdersNotification;
 extern NSString * _Nonnull const LocalzDriverForceLogoutNotification;
 extern NSString * _Nonnull const LocalzDriverUnexpectedLogoutNotification;
+extern NSString * _Nonnull const LocalzDriverFetchOrdersNotification;
 
 @protocol LocalzDriverSDKDelegate <NSObject>
 - (void)localzDriverSDKInit:(NSError * _Nullable)error;
@@ -56,6 +57,7 @@ extern NSString * _Nonnull const LocalzDriverUnexpectedLogoutNotification;
 - (void) localzDriverSDKHelpRequestWithData:(NSDictionary * _Nullable)data;
 - (void) localzDriverSDKReminderWithNumberOfUnassignedOrderNumbers:(NSArray * _Nonnull)orders;
 - (void) localzDriverSDKForceLogout:(NSDictionary * _Nullable)data;
+- (void) localzDriverSDKFetchOrders:(NSDictionary * _Nullable)data;
 - (void) localzDriverSDKUnexpectedLogout;
 - (BOOL) localzDriverSDKShouldSendETANotificationsWithAccuracy:(double)accuracy;
 
