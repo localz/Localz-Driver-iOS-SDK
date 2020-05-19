@@ -122,6 +122,17 @@ extern NSString * _Nonnull const LocalzDriverFetchOrdersNotification;
 - (void) loginWithUsername:(NSString * _Nonnull)username password:(NSString * _Nonnull)password branchId:(NSString * _Nullable)branchId force:(BOOL)force options:(NSDictionary * _Nullable)options completion:(void (^_Nullable)(NSError * _Nullable error, LocalzDriverAttendant * _Nullable user))completion __deprecated_msg("'branchId' and 'options' are no longer in use. Please use loginWithUsername:password:force:completion instead");
 
 /**
+ * SSO Login with the given idP
+ * @param provider the identity provider name
+ * @param idToken the id token returned by the idP
+ * @param accessToken the access token returned by the idP
+ * @param refreshToken the refresh token returned by the idP
+ * @param force Force logout the other user's session if exists. If user has logged in elsewhere and force is false, an error will be returned in the completion block
+ * @param completion Completion block returns LocalzDriverAttendant object if successful or error if any
+ */
+- (void) ssoLogin:(NSString * _Nonnull)provider idToken:(NSString * _Nonnull)idToken accessToken:(NSString * _Nonnull)accessToken refreshToken:(NSString * _Nonnull)refreshToken force:(BOOL) force completion:(void (^ _Nullable)(NSError * _Nullable error, LocalzDriverAttendant * _Nullable user)) completion;
+
+/**
  * Is user currently logged in?
  * @returns True if user is logged in
  */
