@@ -269,9 +269,10 @@ extern NSString * _Nonnull const LocalzDriverFetchOrdersNotification;
 /**
  * Retrieves order details for the given order number
  * @param orderNumber order number for which the details are required
+ * @param subProjectId subProjectId when applicable
  * @param completion The completion block which will return error if any
  */
-- (void) retrieveOrderDetailsForOrderNumber:(NSString * _Nonnull)orderNumber completion:(void (^ _Nullable)(NSError * _Nullable error, LocalzDriverOrder * _Nullable order))completion;
+- (void) retrieveOrderDetailsForOrderNumber:(NSString * _Nonnull)orderNumber subProjectId:(NSString * _Nullable)subProjectId completion:(void (^ _Nullable)(NSError * _Nullable error, LocalzDriverOrder * _Nullable order))completion;
 
 
 /** Add a comment to the given order number.
@@ -288,9 +289,10 @@ extern NSString * _Nonnull const LocalzDriverFetchOrdersNotification;
 /**
  * Sets the status of the order to acknowledged
  * @param orderNumber The order number
+ * @param subProjectId subProjectId when applicable
  * @param completion The completion block which will return error if any
  */
-- (void) acknowledgeOrder:(NSString * _Nonnull)orderNumber completion:(void(^ _Nullable)(NSError * _Nullable error))completion;
+- (void) acknowledgeOrder:(NSString * _Nonnull)orderNumber subProjectId:(NSString * _Nullable)subProjectId completion:(void(^ _Nullable)(NSError * _Nullable error))completion;
 
 /**
  * Sends ETA notification to the customer. This will also take background tracking out of resume.
@@ -307,62 +309,42 @@ extern NSString * _Nonnull const LocalzDriverFetchOrdersNotification;
  * This will queue an ETA notification and send it when a more accurate location is aquired or a timeout is reached. The delegate localzDriverSDKShouldSendETANotificationsWithAccuracy: can be used to customise this behaviour. When complete a notification will be delivered via LocalzDriverETARequestNotification with the result of this method.
  *  A warning will be issued if a buffer of over 24 hours is passed in.
  * @param orderNumber The order number
+ * @param subProjectId subProjectId when applicable
  * @param completeActiveOrders The option (BOOL) to move orders with an active status to completed for the current driver
  * @param buffer Number of minutes (int) as buffer to be added to ETA for next order
  */
-- (void) requestAccurateEtaNotification:(NSString * _Nonnull)orderNumber completeActiveOrders:(BOOL)completeActiveOrders etaBufferInMinutes:(int)buffer;
+- (void) requestAccurateEtaNotification:(NSString * _Nonnull)orderNumber subProjectId:(NSString * _Nullable)subProjectId completeActiveOrders:(BOOL)completeActiveOrders etaBufferInMinutes:(int)buffer;
 
 /**
  * Retrieves the ETA to the location specified in the order and the current location of the device
  * @param orderNumber The order number to get ETA for
- * @param completion The completion block which returns the error if any
- */
-- (void) getEtaForOrderNumber:(NSString * _Nonnull)orderNumber
-                   completion:(void (^_Nullable)(NSError * _Nullable error, LocalzEta * _Nullable))completion;
-
-/**
- * Retrieves the ETA to the location specified in the order and the current location of the device
- * @param orderNumber The order number to get ETA for
+ * @param subProjectId subProjectId when applicable
  * @param points Flag indicating whether to return route points
  * @param completion The completion block which returns the error if any
  */
 - (void) getEtaForOrderNumber:(NSString * _Nonnull)orderNumber
+                 subProjectId:(NSString * _Nullable)subProjectId
                        points:(BOOL)points
                    completion:(void (^_Nullable)(NSError * _Nullable error, LocalzEta * _Nullable))completion;
 
 /**
  * Completes the given order
  * @param orderNumber The order number
- * @param signature The image of the captured signature (optional)
- * @param notes Additional notes (optional)
- * @param completion The completion block which returns the error if any
- */
-- (void) completeOrderNumber:(NSString * _Nonnull)orderNumber signature:(UIImage * _Nullable)signature notes:(NSString * _Nullable)notes completion:(void (^_Nullable)(NSError * _Nullable error))completion  __deprecated_msg("Please use completeOrderNumber:signature:notes:proofOfDelivery:completion: instead");
-
-/**
- * Completes the given order
- * @param orderNumber The order number
- * @param signature The image of the captured signature (optional)
- * @param notes Additional notes (optional)
+ * @param subProjectId subProjectId when applicable
  * @param proofOfDelivery The proof of delivery for the order
  * @param completion The completion block which returns the error if any
  */
-- (void) completeOrderNumber:(NSString * _Nonnull)orderNumber signature:(UIImage * _Nullable)signature notes:(NSString * _Nullable)notes proofOfDelivery:(NSArray<LocalzProofOfDeliveryValue *> *_Nullable)proofOfDelivery completion:(void (^_Nullable)(NSError * _Nullable error))completion;
+- (void) completeOrderNumber:(NSString * _Nonnull)orderNumber subProjectId:(NSString * _Nullable)subProjectId
+     proofOfDelivery:(NSArray<LocalzProofOfDeliveryValue *> *_Nullable)proofOfDelivery completion:(void (^_Nullable)(NSError * _Nullable error))completion;
 
 /**
  * Completes the given order with a failed status
  * @param orderNumber The order number
- * @param completion The completion block which returns the error if any
- */
-- (void) failCompleteOrderNumber:(NSString * _Nonnull)orderNumber completion:(void (^_Nullable)(NSError * _Nullable error))completion __deprecated_msg("Please use failCompleteOrder:proofOfDelivery:completion: instead");
-
-/**
- * Completes the given order with a failed status
- * @param orderNumber The order number
+ * @param subProjectId subProjectId when applicable
  * @param proofOfDelivery The proof of delivery for the failed order
  * @param completion The completion block which returns the error if any
  */
-- (void) failCompleteOrderNumber:(NSString * _Nonnull)orderNumber proofOfDelivery:(NSArray<LocalzProofOfDeliveryValue *> *_Nullable)proofOfDelivery completion:(void (^_Nullable)(NSError * _Nullable error))completion;
+- (void) failCompleteOrderNumber:(NSString * _Nonnull)orderNumber subProjectId:(NSString * _Nullable)subProjectId proofOfDelivery:(NSArray<LocalzProofOfDeliveryValue *> *_Nullable)proofOfDelivery completion:(void (^_Nullable)(NSError * _Nullable error))completion;
 
 /**
  *  Masks a delivery phone number for a particular order
