@@ -277,11 +277,13 @@ extern NSString * _Nonnull const LocalzDriverFetchOrdersNotification;
 
 /** Add a comment to the given order number.
 * @param orderNumber NSString order number for which the details are required.
+* @param subProjectId subProjectId when applicable
 * @param comment NSString representing the comment to add.
 * @param commentDate NSDate representing the date for given comment.
 * @param completion Completion block returning an error if any.
 */
 - (void) addCommentToOrderNumber:(nonnull NSString *)orderNumber
+                    subProjectId:(NSString * _Nullable)subProjectId
                          comment:(nonnull NSString *)comment
                      commentDate:(nullable NSDate *)commentDate
                       completion:(nullable void(^)(NSError *_Nullable error))completion;
@@ -349,9 +351,10 @@ extern NSString * _Nonnull const LocalzDriverFetchOrdersNotification;
 /**
  *  Masks a delivery phone number for a particular order
  *  @param orderNumber The order number for the order to with a delivery phone to mask
+ *  @param subProjectId subProjectId when applicable
  *  @param completion The completion block which returns the error or the confirmed masked phone if any
  */
-- (void) maskDeliveryPhoneNumberForOrderNumber:(NSString * _Nonnull)orderNumber completion:(void(^_Nullable)(NSError * _Nullable error, NSString * _Nullable maskingPhone))completion;
+- (void) maskDeliveryPhoneNumberForOrderNumber:(NSString * _Nonnull)orderNumber subProjectId:(NSString * _Nullable)subProjectId completion:(void(^_Nullable)(NSError * _Nullable error, NSString * _Nullable maskingPhone))completion;
 
 #pragma mark Technician Profile
 
