@@ -59,6 +59,7 @@ extern NSString * const ORDER_STATUS_FAILED_COMPLETE;
 @property (nonatomic, readonly, strong) LocalzDriverUser *user;
 @property (nonatomic, readonly, strong) NSString *stopId;
 @property (nonatomic, readonly, strong) NSString *subProjectId;
+@property (nonatomic, readonly, strong) NSArray *media;
 
 - (LocalzDriverOrder *) initWithData:(NSDictionary *)data;
 

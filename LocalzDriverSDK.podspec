@@ -3,15 +3,15 @@ Pod::Spec.new do |s|
 	s.name	= 'LocalzDriverSDK'
 	s.summary = 'LocalzDriverSDK'
 
-	s.version = '2.1.0'
-	s.platform = :ios,'10.0'
-	s.ios.deployment_target = '10.0'
+	s.version = '2.2.0'
+	s.platform = :ios,'13.0'
+	s.ios.deployment_target = '13.0'
 
 	s.homepage = 'http://www.localz.com'
 	s.license = {
 		:type => 'Commercial',
 		:text => <<-LICENSE
-			Copyright 2020 Localz Pty Ltd.
+			Copyright 2021 Localz Pty Ltd.
 			LICENSE
 	}
 	s.author = { 'Localz Pty Ltd' => 'info@localz.com' }
