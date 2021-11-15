@@ -26,6 +26,8 @@ typedef enum LocalzMimeType {
 
 - (LocalzMedia *) initWithData:(NSDictionary *)data;
 
+- (NSDictionary *) toJSON;
+
 @end
 
 #endif /* LocalzMedia_h */

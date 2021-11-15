@@ -304,7 +304,7 @@ extern NSString * _Nonnull const LocalzDriverFetchOrdersNotification;
  * @param buffer Number of minutes (int) as buffer to be added to ETA for next order
  * @param completion The completion block which returns the ETA or error if any
  */
-- (void) sendEtaNotification:(NSString * _Nonnull)orderNumber completeActiveOrders:(BOOL)completeActiveOrders etaBufferInMinutes:(int)buffer completion:(void (^_Nullable)(NSError * _Nullable error))completion;
+- (void) sendEtaNotification:(NSString * _Nonnull)orderNumber subProjectId:(NSString * _Nullable)subProjectId completeActiveOrders:(BOOL)completeActiveOrders etaBufferInMinutes:(int)buffer completion:(void (^_Nullable)(NSError * _Nullable error))completion;
 
 /**
  * Makes a request for a more accurate ETA notification to be sent to the customer.
