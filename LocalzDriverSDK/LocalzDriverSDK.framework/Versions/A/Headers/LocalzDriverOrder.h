@@ -42,7 +42,6 @@ extern NSString * const ORDER_STATUS_FAILED_COMPLETE;
 @property (nonatomic, readonly, strong) NSString *pickupLocation;
 @property (nonatomic, readonly, strong) NSString *orderStatus;
 @property (nonatomic, readonly, strong) NSString *status __deprecated_msg("Please use 'orderStatus' instead");
-@property (nonatomic, readonly) BOOL shouldGiveFeedback __deprecated_msg("'shouldGiveFeedback' is no longer supported");
 @property (nonatomic, readonly, strong) NSArray *proofOfDeliveryFlow;
 @property (nonatomic, readonly, strong) NSString *secondaryReference;
 @property (nonatomic, readonly, strong) NSArray *customerInstructions;
