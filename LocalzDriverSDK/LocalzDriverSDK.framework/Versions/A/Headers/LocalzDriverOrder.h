@@ -11,6 +11,7 @@
 #import "LocalzDriverOrderAddress.h"
 #import "LocalzDriverOrderLocation.h"
 #import "LocalzDriverUser.h"
+#import "LocalzProofOfDeliveryValue.h"
 
 extern NSString * const ORDER_STATUS_PENDING;
 extern NSString * const ORDER_STATUS_PENDING_PACKED;
@@ -18,6 +19,7 @@ extern NSString * const ORDER_STATUS_READY;
 extern NSString * const ORDER_STATUS_UNASSIGNED;
 extern NSString * const ORDER_STATUS_ETAQUEUED;
 extern NSString * const ORDER_STATUS_ASSIGNED;
+extern NSString * const ORDER_STATUS_HANDOVER;
 extern NSString * const ORDER_STATUS_COMPLETE;
 extern NSString * const ORDER_STATUS_FAILED_COMPLETE;
 
@@ -30,6 +32,7 @@ extern NSString * const ORDER_STATUS_FAILED_COMPLETE;
 @property (nonatomic, readonly, strong) NSString *orderNumber;
 @property (nonatomic, readonly, strong) NSDate *pickupStart;
 @property (nonatomic, readonly, strong) NSDate *pickupEnd;
+@property (nonatomic, readonly, strong) NSDate *handoverTime;
 @property (nonatomic, readonly, strong) NSDate *expectedDateFrom __deprecated_msg("Please use 'pickupStart' instead");
 @property (nonatomic, readonly, strong) NSDate *expectedDateTo __deprecated_msg("Please use 'pickupEnd' instead");
 @property (nonatomic, readonly, strong) NSString *shopperId;
@@ -43,6 +46,7 @@ extern NSString * const ORDER_STATUS_FAILED_COMPLETE;
 @property (nonatomic, readonly, strong) NSString *orderStatus;
 @property (nonatomic, readonly, strong) NSString *status __deprecated_msg("Please use 'orderStatus' instead");
 @property (nonatomic, readonly, strong) NSArray *proofOfDeliveryFlow;
+@property (nonatomic, readonly, strong) NSArray<LocalzProofOfDeliveryValue *> *proofOfHandover;
 @property (nonatomic, readonly, strong) NSString *secondaryReference;
 @property (nonatomic, readonly, strong) NSArray *customerInstructions;
 @property (nonatomic, readonly, strong) NSArray *nominees;

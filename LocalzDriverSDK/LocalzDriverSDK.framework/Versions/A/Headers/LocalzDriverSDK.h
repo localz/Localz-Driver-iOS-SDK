@@ -333,6 +333,16 @@ extern NSString * _Nonnull const LocalzDriverFetchOrdersNotification;
  * Completes the given order
  * @param orderNumber The order number
  * @param subProjectId subProjectId when applicable
+ * @param proofOfHandover The proof of handover for the order
+ * @param completion The completion block which returns the error if any
+ */
+- (void) handoverOrderNumber:(NSString * _Nonnull)orderNumber subProjectId:(NSString * _Nullable)subProjectId
+     proofOfHandover:(NSArray<LocalzProofOfDeliveryValue *> *_Nullable)proofOfHandover completion:(void (^_Nullable)(NSError * _Nullable error))completion;
+
+/**
+ * Completes the given order
+ * @param orderNumber The order number
+ * @param subProjectId subProjectId when applicable
  * @param proofOfDelivery The proof of delivery for the order
  * @param completion The completion block which returns the error if any
  */
