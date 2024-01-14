@@ -5,6 +5,6 @@ source 'https://github.com/CocoaPods/Specs.git'
 
 project 'SampleLocalzDriverApp-ObjC'
 target 'SampleLocalzDriverApp-ObjC' do
-    pod 'LocalzDriverSDK'
+    pod 'LocalzDriverSDK','2.4.0'
 end
 
